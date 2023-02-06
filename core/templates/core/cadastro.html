@@ -1,0 +1,114 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="form-control">
+  <div align="center">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalvisitante">
+    Buscar Visitante
+  </button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalvisitante" tabindex="-1" aria-labelledby="modalvisitanteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalvisitanteLabel">Buscar Visitante Cadastrado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <form method="get" id="search-form" class="form-inline">
+
+        <div class="modal-body">
+            <label for="pessoa" class="form-label">Nome</label>
+            <select name="search" class="form-select">
+              {% for visitante in visitantes %}
+              <option value ="{{visitante.id}}" >{{visitante.nome}} - {{visitante.cidade}}/{{visitante.estado}}  </option>  <!--  - {{visitante.cidade}}/{{visitante.estado}}</option> --> 
+              {% endfor %}
+            </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" id="search"  class="btn btn-primary">Carregar Dados</button>
+        </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <form class="row g-3" method="post">
+
+    {% csrf_token %}
+    <div class="col-md-12">
+      <h6>{{horas}}</h6>
+      <label for="id_visitante" class="form-label">Código:</label>
+      <input type="text" id="id_visitante" name="id_visitante" value="{{atualizando.id}}" disabled="">
+    </div>
+
+    <div class="col-md-6">
+      <label for="name" class="form-label">Nome Completo</label>
+      <input type="text" name="name" class="form-control" placeholder="Nome Completo" aria-label="Nome Completo" value="{{atualizando.nome}}">
+    </div>
+
+    <div class="col-md-6">
+      <label for="mail" class="form-label">E-mail</label>
+      <input type="email" name="mail" class="form-control"  placeholder="e-mail" aria-label="e-mail" value="{{atualizando.email}}">
+    </div>
+
+    <div class="col-md-6">
+      <label for="cel" class="form-label">Celular</label>
+      <input type="text" name="cel" class="form-control" placeholder="Celular" aria-label="Celular" value="{{atualizando.celular}}">
+    </div>
+    
+    <div class="col-md-6">
+      <label for="fone" class="form-label">Telefone</label>
+      <input type="text" name="fone" class="form-control" placeholder="Telefone" aria-label="Telefone" value="{{atualizando.fone}}">
+    </div>
+
+    <div class="col-md-2">
+      <label for="zip" class="form-label">CEP</label>
+      <input type="text" name="zip" class="form-control" value="{{atualizando.cep}}">
+    </div>
+
+    <div class="col-md-10">
+      <label for="address" class="form-label">Endereço</label>
+      <input type="text" name="address" class="form-control"  placeholder="Quadra xxx , Alameda xx , 00" value="{{atualizando.endereco}}">
+    </div>
+
+    <div class="col-md-5">
+      <label for="complement" class="form-label">Complemento</label>
+      <input type="text" name="complement" class="form-control" placeholder="Apto, Condominio, Qi." value="{{atualizando.complemento}}">
+    </div>
+
+    <div class="col-md-4">
+      <label for="city" class="form-label">Cidade</label>
+      <input type="text" name="city" class="form-control" value="{{atualizando.cidade}}" >
+    </div>
+
+    <div class="col-md-3">
+      <label for="state" class="form-label">Estado</label>
+      <select name="state" class="form-select">
+        <option selected> ... </option>
+        <option>DF</option>
+        <option>TO</option>
+      </select>
+    </div>
+
+    <div class="col-mb-3">
+      <label for="description" class="form-label">Descrição da Visita</label>
+      <textarea type="text" name="description" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="col-12" align="center">
+      <button type="submit" class="btn btn-primary">CADASTRAR VISITA</button>
+    </div>
+
+  </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Controle de Visita</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <style>
+      .fundo{
+        background-color: rgba(10,23,55,0.7);
+        padding: 20px;
+        margin: 200px auto;
+        text-align: center;
+        color: white;        
+      }
+    .esquerda{
+      text-align: right;
+    }
+    </style>
+
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="{% url 'cadastro' %}" class="nav-link">Cadastrar</a></li>
+            <li class="nav-item"><a href="{% url 'relatorio' %}" class="nav-link">Visitas</a></li>
+            <li class="nav-item"><a href="{% url 'contatos' %}" class="nav-link">Visitantes</a></li>
+            {% if request.user.is_authenticated %}
+              <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link" style="color: #F70505">Sair</a></li>
+            {% endif %}
+        </ul>
+
+<div class="row">
+    <div class="col-md-12 fundo">
+      <h2> SISTEMA PARA CADASTRO DE VISITAS - BASIC_APPS SDP </h2>
+      <a href="https://api.whatsapp.com/send?phone=5563981269417" style="color: #FFFFFF" target="_blank" >Clique aqui para acionar Suporte</a>
+    </div>
+  
+  </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
